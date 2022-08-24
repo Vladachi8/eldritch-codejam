@@ -1,0 +1,42 @@
+* {
+  display: block;
+  /* color: blue; */
+}
+
+body {
+  margin: 0 auto;
+  padding: 0;
+  background-image: url('../assets/home.png');
+}
+
+.container {
+  width: 90vw;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.elements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create {
+ margin-bottom: 40px;
+}
+
+.form {
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.form:hover {
+  cursor: pointer;
+  background-color: grey;
+}
+
+.deck-img:hover {
+  cursor: pointer;
+}
