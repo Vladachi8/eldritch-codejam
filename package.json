@@ -6,7 +6,8 @@
   "scripts": {
     "prod": "webpack --mode production",
     "live": "webpack-dev-server --mode development",
-    "dev": "webpack --mode development"
+    "dev": "webpack --mode development",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "webpack-dev-server": "^4.10.0"
   },
   "dependencies": {
+    "gh-pages": "^4.0.0",
     "html-loader": "^4.1.0"
   }
 }

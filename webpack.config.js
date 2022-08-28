@@ -16,6 +16,7 @@ module.exports = {
     filename: "[name].[contenthash].js",
     path: path.resolve(__dirname, 'dist'),
     publicPath: "/",
+    publicPath: "/eldritch-codejam/",
     //assetModuleFileName: 'assets/[name]',
   },
   module: {
