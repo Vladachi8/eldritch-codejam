@@ -9,6 +9,13 @@ body {
   background-image: url('../assets/home.png');
 }
 
+.title {
+  text-align: center;
+  color: white;
+  font-size: 45px;
+  margin: 0 auto;
+}
+
 .container {
   width: 90vw;
   height: 90vh;
@@ -25,6 +32,22 @@ body {
 
 .create {
  margin-bottom: 40px;
+}
+
+.ancients {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ancients > img {
+  margin: 0 20px;
+  width: 400px;
+  height: 500px;
+}
+
+.ancients > img:hover {
+  cursor: pointer;
 }
 
 .form {
@@ -49,4 +72,46 @@ body {
   margin-right: 20px;
   height: 404px;
   width: 274px;
+}
+
+
+.stage-decr {
+  text-align: center;
+  color: white;
+  margin: 10px 0;
+}
+
+.circles {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  color: white;
+  margin: auto;
+}
+
+.num {
+  margin: 25% auto;
+}
+
+.green {
+  background: green;
+}
+
+.brown {
+  background: #D2691E;
+}
+
+.blue {
+  background: blue;
+}
+
+.dinone {
+  display: none;
 }

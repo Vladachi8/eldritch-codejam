@@ -5,31 +5,66 @@ import GeneralDeck from '../data/mythicCards/index'
 const deckCard = document.querySelector('.deck-img');
 const deckOpen = document.querySelector('.deck-open');
 const formGameDeck = document.querySelector('.form');
-const generalDeck = new GeneralDeck(getIndexesOfPlayingCards(...getTotalNumberOfCardsEachColor()))
+const azathoth = document.querySelector('.azathoth');
+const iogSothoth = document.querySelector('.iogSothoth');
+const shubNiggurath = document.querySelector('.shubNiggurath');
+const cthulthu = document.querySelector('.cthulthu');
+const title = document.querySelector('.title');
+const stagecounter = document.querySelector('.stagecounter');
+const elements = document.querySelector('.elements');
 
+const firstGreenCount = document.querySelector('.first-green');
+const secondGreenCount = document.querySelector('.second-green');
+const thirdGreenCount = document.querySelector('.third-green');
+const firstBrownCount = document.querySelector('.first-brown');
+const secondBrownCount = document.querySelector('.second-brown');
+const thirdBrownCount = document.querySelector('.third-brown');
+const firstBlueCount = document.querySelector('.first-blue');
+const secondBlueCount = document.querySelector('.second-blue');
+const thirdBlueCount = document.querySelector('.third-blue  ');
+
+
+let ancientNum;
+const generalDeck = new GeneralDeck(getIndexesOfPlayingCards(...getTotalNumberOfCardsEachColor(ancientNum)))
 let gameDeck = [];
 
-function getTotalNumberOfCardsEachColor () {
+function getTotalNumberOfCardsEachColor (ancient) {
+  //ancient = ancientNum;
   let totalBlue = 0;
   let totalGreen = 0;
   let totalBrown = 0;
+  let i;
 
-  totalBlue += cardsDatafrom[0].firstStage.blueCards;
-  totalBlue += cardsDatafrom[0].secondStage.blueCards;
-  totalBlue += cardsDatafrom[0].thirdStage.blueCards;
+  switch(ancient) {
+    case 1:
+      i = 1
+      break
+    case 2:
+      i = 2
+      break
+    case 3:
+      i = 3
+      break
+    default:
+    i = 0
+  }
 
-  totalGreen += cardsDatafrom[0].firstStage.greenCards;
-  totalGreen += cardsDatafrom[0].secondStage.greenCards;
-  totalGreen += cardsDatafrom[0].thirdStage.greenCards;
+  totalBlue += cardsDatafrom[i].firstStage.blueCards;
+  totalBlue += cardsDatafrom[i].secondStage.blueCards;
+  totalBlue += cardsDatafrom[i].thirdStage.blueCards;
 
-  totalBrown += cardsDatafrom[0].firstStage.brownCards;
-  totalBrown += cardsDatafrom[0].secondStage.brownCards;
-  totalBrown += cardsDatafrom[0].thirdStage.brownCards;
+  totalGreen += cardsDatafrom[i].firstStage.greenCards;
+  totalGreen += cardsDatafrom[i].secondStage.greenCards;
+  totalGreen += cardsDatafrom[i].thirdStage.greenCards;
+
+  totalBrown += cardsDatafrom[i].firstStage.brownCards;
+  totalBrown += cardsDatafrom[i].secondStage.brownCards;
+  totalBrown += cardsDatafrom[i].thirdStage.brownCards;
 
   return [totalBlue, totalGreen, totalBrown]
 }
 
-function getTotalNumberOfCardsEachPhaseEachColor  () {
+function getTotalNumberOfCardsEachPhaseEachColor (ancient) {
   let firstStageBlueCards = 0;
   let secondStageBlueCards = 0;
   let thirdStageBlueCards = 0;
@@ -40,17 +75,33 @@ function getTotalNumberOfCardsEachPhaseEachColor  () {
   let secondStageBrownCards = 0;
   let thirdStageBrownCards = 0;
 
-  firstStageBlueCards += cardsDatafrom[0].firstStage.blueCards;
-  secondStageBlueCards += cardsDatafrom[0].secondStage.blueCards;
-  thirdStageBlueCards += cardsDatafrom[0].thirdStage.blueCards;
+  let i;
 
-  firstStageGreenCards += cardsDatafrom[0].firstStage.greenCards;
-  secondStageGreenCards += cardsDatafrom[0].secondStage.greenCards;
-  thirdStageGreenCards += cardsDatafrom[0].thirdStage.greenCards;
+  switch(ancient) {
+    case 1:
+      i = 1
+      break
+    case 2:
+      i = 2
+      break
+    case 3:
+      i = 3
+      break
+    default:
+    i = 0
+  }
 
-  firstStageBrownCards += cardsDatafrom[0].firstStage.brownCards;
-  secondStageBrownCards += cardsDatafrom[0].secondStage.brownCards;
-  thirdStageBrownCards += cardsDatafrom[0].thirdStage.brownCards;
+  firstStageBlueCards += cardsDatafrom[i].firstStage.blueCards;
+  secondStageBlueCards += cardsDatafrom[i].secondStage.blueCards;
+  thirdStageBlueCards += cardsDatafrom[i].thirdStage.blueCards;
+
+  firstStageGreenCards += cardsDatafrom[i].firstStage.greenCards;
+  secondStageGreenCards += cardsDatafrom[i].secondStage.greenCards;
+  thirdStageGreenCards += cardsDatafrom[i].thirdStage.greenCards;
+
+  firstStageBrownCards += cardsDatafrom[i].firstStage.brownCards;
+  secondStageBrownCards += cardsDatafrom[i].secondStage.brownCards;
+  thirdStageBrownCards += cardsDatafrom[i].thirdStage.brownCards;
 
   const firstStage = generalDeck.getCards([firstStageBlueCards,firstStageGreenCards,firstStageBrownCards])
   const secondStage = generalDeck.getCards([secondStageBlueCards,secondStageGreenCards,secondStageBrownCards])
@@ -65,9 +116,22 @@ function getTotalNumberOfCardsEachPhaseEachColor  () {
   const mixedThirdStage = mixStage(thirdStage)
   let finalDeck = [...mixedFirstStage, ...mixedSecondStage, ...mixedThirdStage];
 
+  renderCardStageNumber(firstStageGreenCards, secondStageGreenCards, thirdStageGreenCards, firstStageBrownCards, secondStageBrownCards, thirdStageBrownCards, firstStageBlueCards, secondStageBlueCards, thirdStageBlueCards)
+
   return finalDeck
 }
 
+function renderCardStageNumber (firstGreen,secondGreen,thirdGreen,firstBrown,secondBrown,thirdBrown,firstBlue,secondBlue,thirdBlue) {
+  firstGreenCount.textContent = firstGreen;
+  secondGreenCount.textContent = secondGreen;
+  thirdGreenCount.textContent = thirdGreen;
+  firstBrownCount.textContent = firstBrown;
+  secondBrownCount.textContent = secondBrown;
+  thirdBrownCount.textContent = thirdBrown;
+  firstBlueCount.textContent = firstBlue;
+  secondBlueCount.textContent = secondBlue;
+  thirdBlueCount.textContent = thirdBlue;
+}
 function getIndexesOfPlayingCards (numberOfBlue, numberOfGreen, numberOfBrown) {
   let blueRandPlayingCard = [];
   let greenRandPlayingCard = [];
@@ -160,16 +224,55 @@ function pickACardFromDeck () {
 }
 
 function showCard () {
-
-  // let img = new Image();
   let [card] = pickACardFromDeck()
-  if(!card){alert('Game Over')}
+  if(!card){alert('Form a new deck and click again')}
   deckOpen.style.backgroundImage = `url(${card.cardFace})`
-  // img.src = card.cardFace;
-  // if(img.src){console.log(img.src)}
-  // deckOpen.appendChild(img)
 }
 
+function startAzathoth () {
+  ancientNum = 0;
+  iogSothoth.classList.add('dinone')
+  shubNiggurath.classList.add('dinone')
+  cthulthu.classList.add('dinone')
+  stagecounter.classList.remove('dinone')
+  elements.classList.remove('dinone')
+  title.textContent = 'Difficulty is normal, click button to create a deck'
+}
+
+function startIogSothoth () {
+  ancientNum = 2;
+  azathoth.classList.add('dinone')
+  shubNiggurath.classList.add('dinone')
+  cthulthu.classList.add('dinone')
+  stagecounter.classList.remove('dinone')
+  elements.classList.remove('dinone')
+  title.textContent = 'Difficulty is normal, click button to create a deck'
+}
+
+function startShubNiggurath () {
+  ancientNum = 3;
+  azathoth.classList.add('dinone')
+  iogSothoth.classList.add('dinone')
+  cthulthu.classList.add('dinone')
+  stagecounter.classList.remove('dinone')
+  elements.classList.remove('dinone')
+  title.textContent = 'Difficulty is normal, click button to create a deck'
+}
+
+function startCthulthu () {
+  ancientNum = 1;
+  azathoth.classList.add('dinone')
+  iogSothoth.classList.add('dinone')
+  shubNiggurath.classList.add('dinone')
+  stagecounter.classList.remove('dinone')
+  elements.classList.remove('dinone')
+  title.textContent = 'Difficulty is normal, click button to create a deck'
+}
+
+azathoth.addEventListener('click', startAzathoth)
+iogSothoth.addEventListener('click', startIogSothoth)
+shubNiggurath.addEventListener('click', startShubNiggurath)
+cthulthu.addEventListener('click', startCthulthu)
 
 deckCard.addEventListener('click', showCard)
-formGameDeck.addEventListener('click', function () {gameDeck = getTotalNumberOfCardsEachPhaseEachColor()})
+formGameDeck.addEventListener('click', function () {gameDeck = getTotalNumberOfCardsEachPhaseEachColor(ancientNum)})
