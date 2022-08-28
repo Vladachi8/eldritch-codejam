@@ -37,6 +37,16 @@ body {
   background-color: grey;
 }
 
+.deck {
+  display: flex;
+}
+
 .deck-img:hover {
   cursor: pointer;
+}
+
+.deck-open {
+  margin-right: 20px;
+  height: 404px;
+  width: 274px;
 }
